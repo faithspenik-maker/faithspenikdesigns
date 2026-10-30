@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Faith Spenik — Design & Marketing</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@1,500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f7f6f2;
+      --text: #20201e;
+      --muted: #85847e;
+      --accent: #c4f05b;
+      --line: #deddd6;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "DM Sans", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* NAVIGATION */
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 26px 6%;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .logo {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      font-size: 12px;
+      color: #66655f;
+    }
+
+    .nav-links a {
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: #000;
+    }
+
+    /* INTRO */
+
+    .hero {
+      padding: 100px 6% 65px;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    .dot {
+      height: 7px;
+      width: 7px;
+      border-radius: 50%;
+      background: #8ba93c;
+    }
+
+    h1 {
+      font-size: clamp(48px, 8.5vw, 112px);
+      font-weight: 500;
+      line-height: 0.98;
+      letter-spacing: -0.085em;
+      max-width: 1000px;
+    }
+
+    h1 em {
+      font-family: "Playfair Display", serif;
+      font-weight: 500;
+      letter-spacing: -0.07em;
+    }
+
+    .hero-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 30px;
+      margin-top: 35px;
+    }
+
+    .hero-description {
+      max-width: 370px;
+      color: #77766f;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .scroll-note {
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      white-space: nowrap;
+    }
+
+    /* PROJECTS */
+
+    .projects {
+      padding: 20px 6% 100px;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--line);
+      padding: 20px 0;
+      margin-bottom: 18px;
+    }
+
+    .section-heading h2 {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1.3px;
+      font-weight: 600;
+    }
+
+    .section-heading span {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .project {
+      position: relative;
+      display: block;
+      overflow: hidden;
+      aspect-ratio: 0.86;
+      background: #e4e0d8;
+      border-radius: 3px;
+      cursor: pointer;
+      isolation: isolate;
+    }
+
+    .project img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: filter 0.45s ease, transform 0.65s ease;
+    }
+
+    .project::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: rgba(25, 25, 22, 0.48);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+    }
+
+    .project-info {
+      position: absolute;
+      z-index: 2;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 22px;
+      color: white;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.35s ease, transform 0.35s ease;
+      pointer-events: none;
+    }
+
+    .project-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .project-number {
+      border: 1px solid rgba(255,255,255,0.65);
+      padding: 6px 9px;
+      border-radius: 30px;
+      white-space: nowrap;
+    }
+
+    .project-bottom h3 {
+      font-size: clamp(21px, 2.4vw, 32px);
+      line-height: 1.1;
+      letter-spacing: -1px;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+
+    .project-bottom p {
+      font-size: 12px;
+      line-height: 1.6;
+      max-width: 270px;
+      color: rgba(255,255,255,0.86);
+    }
+
+    .project-bottom .view {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 22px;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* HOVER AND KEYBOARD EFFECTS */
+
+    .project:hover img,
+    .project:focus-visible img {
+      filter: blur(5px);
+      transform: scale(1.07);
+    }
+
+    .project:hover::after,
+    .project:focus-visible::after {
+      opacity: 1;
+    }
+
+    .project:hover .project-info,
+    .project:focus-visible .project-info {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .project:focus-visible {
+      outline: 2px solid #8ba93c;
+      outline-offset: 4px;
+    }
+
+    /* ABOUT SECTION */
+
+    .about {
+      background: #eeede7;
+      padding: 90px 6%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+      align-items: start;
+    }
+
+    .about-label {
+      color: var(--muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+    }
+
+    .about-heading {
+      max-width: 500px;
+    }
+
+    .about-title-link {
+      display: inline-block;
+      margin-top: 22px;
+    }
+
+    .about h2 {
+      font-size: clamp(35px, 5vw, 60px);
+      line-height: 1.08;
+      letter-spacing: -3px;
+      font-weight: 500;
+      max-width: 500px;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .about h2 em {
+      font-family: "Playfair Display", serif;
+      font-weight: 500;
+      color: #85847e;
+      transition: color 0.3s ease;
+    }
+
+    .about-title-link:hover h2 {
+      opacity: 0.8;
+      transform: translateX(8px);
+    }
+
+    .about-title-link:hover h2 em {
+      color: #8ba93c;
+    }
+
+    .about-title-link:focus-visible {
+      outline: 2px solid #8ba93c;
+      outline-offset: 6px;
+    }
+
+    .about-copy {
+      padding-top: 30px;
+      max-width: 450px;
+    }
+
+    .about-copy p {
+      font-size: 14px;
+      line-height: 1.9;
+      color: #66655f;
+      margin-bottom: 20px;
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 28px;
+    }
+
+    .skills span {
+      border: 1px solid #d2d0c8;
+      border-radius: 30px;
+      padding: 9px 13px;
+      font-size: 11px;
+    }
+
+    /* CONTACT */
+
+    .contact {
+      padding: 95px 6% 35px;
+    }
+
+    .contact h2 {
+      font-size: clamp(42px, 7vw, 86px);
+      line-height: 1;
+      letter-spacing: -5px;
+      font-weight: 500;
+      margin: 25px 0 35px;
+    }
+
+    .contact h2 em {
+      font-family: "Playfair Display", serif;
+      font-weight: 500;
+    }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 25px;
+      background: var(--accent);
+      padding: 15px 20px;
+      border-radius: 40px;
+      font-size: 12px;
+      font-weight: 600;
+      transition: transform 0.2s ease;
+    }
+
+    .contact-link:hover {
+      transform: translateY(-3px);
+    }
+
+    footer {
+      margin-top: 100px;
+      border-top: 1px solid var(--line);
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    /* RESPONSIVE TABLET */
+
+    @media (max-width: 800px) {
+      .hero {
+        padding-top: 75px;
+      }
+
+      .project-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .about {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding-top: 65px;
+        padding-bottom: 65px;
+      }
+
+      .about-copy {
+        padding-top: 15px;
+      }
+    }
+
+    /* RESPONSIVE MOBILE */
+
+    @media (max-width: 520px) {
+      nav {
+        padding: 22px 5%;
+      }
+
+      .nav-links {
+        gap: 15px;
+        font-size: 11px;
+      }
+
+      .hero {
+        padding: 75px 5% 45px;
+      }
+
+      .hero-bottom {
+        align-items: start;
+        flex-direction: column;
+      }
+
+      .projects {
+        padding: 15px 5% 65px;
+      }
+
+      .project-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .project {
+        aspect-ratio: 1.08;
+      }
+
+      /* Show descriptions on touch screens */
+
+      .project-info {
+        opacity: 1;
+        transform: none;
+      }
+
+      .project::after {
+        opacity: 1;
+        background: linear-gradient(
+          to top,
+          rgba(20,20,18,0.82),
+          rgba(20,20,18,0.04) 85%
+        );
+      }
+
+      .project-bottom h3 {
+        font-size: 28px;
+      }
+
+      .project img {
+        filter: none;
+      }
+
+      .about {
+        padding-left: 5%;
+        padding-right: 5%;
+      }
+
+      .about h2 {
+        letter-spacing: -2px;
+      }
+
+      .contact {
+        padding: 70px 5% 25px;
+      }
+
+      .contact h2 {
+        letter-spacing: -2px;
+      }
+
+      footer {
+        margin-top: 70px;
+        flex-wrap: wrap;
+      }
+    }
+
+    /* REDUCED MOTION ACCESSIBILITY */
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+
+  <nav>
+    <a class="logo" href="index.html">Faith Spenik</a>
+
+    <div class="nav-links">
+      <a href="#projects">Work</a>
+      <a href="about.html">About</a>
+      <a href="#contact">Contact ↗</a>
+    </div>
+  </nav>
+
+  <!-- INTRODUCTION -->
+
+  <header class="hero">
+    <div class="eyebrow">
+      <span class="dot"></span>
+      Available for work
+    </div>
+
+    <h1>
+     Faith Spenik<br>
+      <em>Designs with heart</em>.
+    </h1>
+
+    <div class="hero-bottom">
+      <p class="hero-description"> I'm Faith, a designer and marketing creative
+        building thoughtful brands, compelling visuals,
+        and ideas that connect with people.&nbsp; <br> <br> site hand coded by me</p>
+      <p class="hero-description">&nbsp;</p>
+<p class="hero-description">&nbsp;</p>
+<span class="scroll-note">Scroll to explore ↓</span>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- SELECTED PROJECTS -->
+
+    <section class="projects" id="projects">
+
+      <div class="section-heading">
+        <h2>Selected work</h2>
+        <span>2023 — 2026 / 06 projects</span>
+      </div>
+
+      <div class="project-grid">
+
+        <!-- PROJECT 1: POSTERS -->
+
+        <a class="project"
+           href="posters.html"
+           aria-label="View Posters project">
+
+          <img src="natypyer.jpg"
+               alt="Promotional poster designs"
+               loading="lazy">
+
+          <div class="project-info">
+            <div class="project-top">
+              <span>Promotion</span>
+              <span class="project-number">05</span>
+            </div>
+
+            <div class="project-bottom">
+              <h3>Posters</h3>
+              <p>Promotional posters.</p>
+              <span class="view">Explore project ↗</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- PROJECT 2: DO THE SECURITY -->
+
+        <a class="project"
+           href="DTS.html"
+           aria-label="View Do The Security project">
+
+          <img src="3-CMMC-Nested-Doll-Infographic.png"
+               alt="Do The Security marketing and design project"
+               loading="lazy">
+
+          <div class="project-info">
+            <div class="project-top">
+              <span>Marketing / Socials</span>
+              <span class="project-number">02</span>
+            </div>
+
+            <div class="project-bottom">
+              <h3>Do The Security</h3>
+              <p>Freelance design for a government-contracted cybersecurity firm.</p>
+              <span class="view">Explore project ↗</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- PROJECT 5: SCOUT -->
+
+        <a class="project"
+           href="scout.html"
+           aria-label="View Scout branding project">
+
+          <img src="IMG_1919 2.jpg"
+               alt="Scout branding and promotional visuals"
+               loading="lazy">
+
+          <div class="project-info">
+            <div class="project-top">
+              <span>Branding / Socials</span>
+              <span class="project-number">03</span>
+            </div>
+
+            <div class="project-bottom">
+              <h3>Scout</h3>
+              <p>Branding, visuals, and social media for a local singer-songwriter.</p>
+              <span class="view">Explore project ↗</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- PROJECT 4: 5801 HAIR -->
+
+        <a class="project"
+           href="5801hair.html"
+           aria-label="View 5801 Hair website project">
+
+          <img src="Screenshot 2026-10-30 at 10.14.00 AM.png"
+               alt="5801 Hair website design"
+               loading="lazy">
+
+          <div class="project-info">
+            <div class="project-top">
+              <span>Web Design</span>
+              <span class="project-number">04</span>
+            </div>
+
+            <div class="project-bottom">
+              <h3>5801 Hair</h3>
+              <p>Website creation for a local hair salon.</p>
+              <span class="view">Explore project ↗</span>
+            </div>
+          </div>
+        </a>
+
+      <!-- PROJECT 6: OVERBOOKED -->
+
+        <a class="project"
+           href="overbooked.html"
+           aria-label="View Overbooked Senior Showcase project">
+
+          <img src="invite.png"
+               alt="Overbooked Senior Showcase identity design"
+               loading="lazy">
+
+          <div class="project-info">
+            <div class="project-top">
+              <span>Branding / Identity</span>
+              <span class="project-number">01</span>
+            </div>
+
+            <div class="project-bottom">
+              <h3>Overbooked: Senior Showcase</h3>
+              <p>Collaborative identity design for an art exhibition.</p>
+              <span class="view">Explore project ↗</span>
+            </div>
+          </div>
+        </a>
+
+
+     <!-- PROJECT 3: GOT POTHOLES -->
+
+        <a class="project"
+           href="project-got-potholes.html"
+           aria-label="View Got Potholes campaign">
+
+          <img src="Free_Square_Roll_Sticker_Mockup_1.png"
+               alt="Got Potholes campaign design"
+               loading="lazy">
+
+          <div class="project-info">
+            <div class="project-top">
+              <span>Campaign</span>
+              <span class="project-number">06</span>
+            </div>
+
+            <div class="project-bottom">
+              <h3>Got Potholes?</h3>
+              <p>A campaign encouraging the public to help get potholes filled.</p>
+              <span class="view">Explore project ↗</span>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+
+    <section class="about" id="about">
+
+      <div class="about-heading">
+
+        <span class="about-label">A little about me</span>
+
+        <a href="about.html" class="about-title-link">
+          <h2>
+            Designs that make a difference.<br>
+            <em>Get to know me ↗</em>
+          </h2>
+        </a>
+
+      </div>
+
+      <div class="about-copy">
+
+        <p>
+          I'm Faith, a creative professional interested in the
+          intersection of design, culture, and marketing. I love
+          turning ideas into visual experiences that look good,
+          communicate clearly, and make an impact.
+        </p>
+
+
+        <div class="skills">
+          <span>Graphic Design</span>
+          <span>Brand Strategy</span>
+          <span>Marketing</span>
+          <span>Art Direction</span>
+          <span>Social Media</span>
+          <span>Content Creation</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+
+    <section class="contact" id="contact">
+
+      <span class="about-label">Have something in mind?</span>
+
+      <h2>
+        Let's make<br>
+        <em>something great.</em>
+      </h2>
+
+      <!-- Replace with your actual email address -->
+
+      <a class="contact-link"
+         href="mailto:hello@example.com">
+        Let's connect <span>↗</span>
+      </a>
+
+      <footer>
+        <span>© 2026 Faith Spenik</span>
+        <span>Design · Marketing · Creative</span>
+        <a href="#">Back to top ↑</a>
+      </footer>
+
+    </section>
+
+  </main>
+
+</body>
+</html>
+

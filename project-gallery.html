@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Gallery — Faith Spenik</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@1,500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #f7f6f2;
+  --text: #20201e;
+  --muted: #85847e;
+  --line: #deddd6;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "DM Sans", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Navigation */
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 26px 6%;
+  border-bottom: 1px solid var(--line);
+}
+
+.logo {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -.5px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+  font-size: 12px;
+  color: #66655f;
+}
+
+.nav-links a:hover {
+  color: #000;
+}
+
+/* Page heading */
+.page-hero {
+  padding: 85px 6% 45px;
+}
+
+.eyebrow {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--muted);
+  margin-bottom: 22px;
+}
+
+h1 {
+  font-size: clamp(48px, 8.5vw, 104px);
+  font-weight: 500;
+  line-height: .98;
+  letter-spacing: -.08em;
+  max-width: 1000px;
+}
+
+h1 em {
+  font-family: "Playfair Display", serif;
+  font-weight: 500;
+}
+
+.subline {
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: .5px;
+  margin-top: 24px;
+}
+
+/* Gallery */
+.gallery {
+  padding: 15px 6% 90px;
+}
+
+/*
+  Responsive masonry layout.
+  Each image determines its own height.
+*/
+.mosaic {
+  columns: 3;
+  column-gap: 14px;
+}
+
+/* Image frames */
+.tile {
+  display: inline-block;
+  vertical-align: top;
+  width: 100%;
+  margin: 0 0 14px;
+  break-inside: avoid;
+  overflow: hidden;
+  background: #e4e0d8;
+  border-radius: 3px;
+}
+
+/* Photos keep their original aspect ratios */
+.tile img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  transition: transform .6s ease, filter .4s ease;
+}
+
+.tile:hover img {
+  transform: scale(1.025);
+  filter: brightness(.96);
+}
+
+/* Empty image placeholders */
+.tile .placeholder {
+  width: 100%;
+  min-height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #e9e6de, #d7d2c7);
+  color: #85847e;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Make the gallery responsive */
+@media (min-width: 1200px) {
+  .mosaic {
+    columns: 3;
+  }
+}
+
+@media (max-width: 900px) {
+  .mosaic {
+    columns: 2;
+  }
+}
+
+@media (max-width: 700px) {
+  nav {
+    padding: 22px 5%;
+  }
+
+  .nav-links {
+    gap: 15px;
+    font-size: 11px;
+  }
+
+  .page-hero {
+    padding: 65px 5% 35px;
+  }
+
+  .gallery {
+    padding: 10px 5% 60px;
+  }
+
+  .mosaic {
+    columns: 2;
+    column-gap: 10px;
+  }
+
+  .tile {
+    margin-bottom: 10px;
+  }
+
+  .tile .placeholder {
+    min-height: 120px;
+  }
+
+  footer {
+    margin: 0 5%;
+    flex-wrap: wrap;
+  }
+}
+
+/* Footer */
+footer {
+  margin: 0 6%;
+  border-top: 1px solid var(--line);
+  padding: 20px 0 30px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <a class="logo" href="index.html">Faith Spenik</a>
+
+  <div class="nav-links">
+    <a href="index.html#projects">Work</a>
+    <a href="about.html">About</a>
+    <a href="index.html#contact">Contact ↗</a>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <div class="eyebrow">Selected work / Project 02</div>
+  <h1>Freelance&nbsp; <em>DTS</em></h1>
+  <p class="subline">Social and Web posts for Do the Security Company</p>
+</header>
+
+<main class="gallery">
+  <div class="mosaic">
+
+
+    <div class="tile">
+      <img
+        src="3-CMMC-Nested-Doll-Infographic.png"
+        alt="Project image 4"
+        loading="lazy"
+      >
+    </div>
+
+ <div class="tile">
+      <img
+        src="1784980838067.jpeg"
+        alt="Project image 8"
+        loading="lazy"
+      >
+    </div>
+
+    <div class="tile">
+      <img
+        src="1788782401417.jpeg"
+        alt="Project image 6"
+        loading="lazy"
+      >
+    </div>
+
+   
+
+    <div class="tile">
+      <img
+        src="1786461314863.jpeg"
+        alt="Project image 8"
+        loading="lazy"
+      >
+    </div>
+	  
+    <div class="tile">
+      <img
+        src="DTS_PSC_Thought_Leadership_Compendium_Article__Page_1.jpg"
+        alt="Project image 1"
+        loading="lazy"
+      >
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <span>© 2026 Faith Spenik</span>
+  <span>Design · Marketing · Creative</span>
+  <a href="index.html">← Back to work</a>
+</footer>
+
+</body>
+</html>
+
